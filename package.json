@@ -1,0 +1,19 @@
+{
+  "name": "lunchbot",
+  "version": "1.0.0",
+  "description": "Lunchbot - a Skygear JS Cloud Code demo",
+  "main": "index.js",
+  "dependencies": {
+    "@slack/client": "^3.6.1",
+    "lodash": "^4.17.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.10.2"
+  },
+  "scripts": {
+    "lint": "eslint src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0"
+}
