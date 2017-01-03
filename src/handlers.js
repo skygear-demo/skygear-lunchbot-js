@@ -69,7 +69,8 @@ function addLunchPlace(user, placeName) {
     if (places.length === 0) {
       console.info(`Lunch place "${placeName}" does not exist. Creating...`);
       const place = new LunchPlace({
-        name: placeName
+        name: placeName,
+        active: true
       });
 
       return container.publicDB.save(place).then(() => {
@@ -114,6 +115,7 @@ function createRandomProposal(user, channel) {
 
   const container = getContainer(user.id);
   const query = new skygear.Query(LunchPlace);
+  query.equalTo('active', true);
   return container.publicDB.query(query).then((places) => {
     if (botConfig.debugMode) {
       console.log(`Found ${places.length} lunch places.`);
