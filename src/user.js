@@ -22,11 +22,11 @@ const { poolConnect } = require('./db');
  * This function create a user for the specified slack ID.
  */
 function createUser(slackId) {
-  return getContainer().signupWithUsername(slackId, generatePassword())
-    .then((user) => {
-      console.info(`Created user "${user.id}" for "${slackId}".`);
+  return getContainer().auth.signupWithUsername(slackId, generatePassword())
+    .then((profile) => {
+      console.info(`Created user "${profile.id}" for "${slackId}".`);
       return {
-        id: user.id,
+        id: profile.id,
         slackId: slackId
       };
     }, (err) => {
@@ -49,7 +49,7 @@ function findSlackUser(slackId) {
       }
 
       client.query(
-        'SELECT id FROM _user WHERE username = $1;',
+        'SELECT _auth.id FROM _auth LEFT JOIN "user" ON "user"._id = _auth.id WHERE "user".username = $1;',
         [slackId],
         function (queryErr, result) {
           done();
