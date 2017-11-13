@@ -9,7 +9,7 @@ services:
     - "5432:5432"
 
   app:
-    image: quay.io/skygeario/skygear-server:v0.19.1
+    image: quay.io/skygeario/skygear-server:latest
     ports:
     - "3000:3000"
     volumes:
