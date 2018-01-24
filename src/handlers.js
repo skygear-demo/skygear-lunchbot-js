@@ -93,6 +93,7 @@ function listLunchPlaces(user) {
 
   const container = getContainer(user.id);
   const query = new skygear.Query(LunchPlace);
+  query.equalTo('active', true);
   return container.publicDB.query(query).then((places) => {
     console.info(`Found ${places.length} lunch places.`);
     let content = '';
