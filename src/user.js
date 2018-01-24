@@ -49,7 +49,11 @@ function findSlackUser(slackId) {
       }
 
       client.query(
-        'SELECT _auth.id FROM _auth LEFT JOIN "user" ON "user"._id = _auth.id WHERE "user".username = $1;',
+        `SELECT _auth.id
+         FROM _auth
+         LEFT JOIN "user"
+         ON "user"._id = _auth.id
+         WHERE "user".username = $1;`,
         [slackId],
         function (queryErr, result) {
           done();
